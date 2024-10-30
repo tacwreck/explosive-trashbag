@@ -9,6 +9,8 @@
 - **Click Counter**: Track the number of times the trash bag has been clicked.
 - **Simple and Fun Design**: Clean, comic-inspired design for an enjoyable user experience.
 
+> **Note**: This project does **not** require [tacLib](https://github.com/tacwreck/tacLib).
+
 ## Getting Started
 
 ### Prerequisites
