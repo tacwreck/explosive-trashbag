@@ -2,34 +2,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Explosive Trash Bag</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>Explosive Bomb</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif; /* Use the chosen font */
+            background-color: #f6f8fa; /* Light gray background */
+            color: #24292e; /* Dark text color */
+            margin: 0;
+            padding: 20px;
+            text-align: center; /* Center content */
+        }
+
+        h1 {
+            margin-bottom: 20px; /* Spacing below the heading */
+        }
+
+        #bomb {
+            width: 150px; /* Bomb image size */
+            cursor: pointer; /* Pointer cursor on hover */
+        }
+
+        #counter {
+            font-size: 24px; /* Counter font size */
+            margin-top: 20px; /* Spacing above the counter */
+        }
+
+        button {
+            background-color: #2ea44f; /* Green button color */
+            color: white; /* White text color */
+            border: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px; /* Button font size */
+            margin-top: 20px; /* Spacing above the button */
+        }
+
+        button:hover {
+            background-color: #22863a; /* Darker green on hover */
+        }
+
+        #merchantTimer {
+            margin-top: 20px; /* Spacing above the timer */
+        }
+    </style>
 </head>
 <body>
-  <h1>Explosive Trash Bag</h1>
-  <!-- Timer display for merchant arrival -->
-  <div class="timer" id="merchantTimer">Merchant in: 30:00</div>
-  
-  <div class="container">
-    <div class="trash-bag" id="trashBag">💥</div>
-    <div class="boom-text" id="boomText">BOOM!</div>
-  </div>
-  <p>Points: <span id="counter">0</span></p>
-  
-  <!-- Upgrades section -->
-  <div class="upgrades">
-    <h2>Upgrades</h2>
-    <button id="multiplierUpgrade">Upgrade Multiplier (x<span id="multiplier">1</span>) - Cost: <span id="multiplierCost">10</span> points</button>
-  </div>
-  
-  <!-- Merchant section -->
-  <div id="merchantSection" class="hidden">
-    <h2>Travelling Merchant</h2>
-    <button id="buyAutoClicker">Buy Auto-Clicker - Cost: 100 points</button>
-  </div>
+    <h1>Explosive Bomb</h1>
+    <img id="bomb" src="path/to/your/bomb-image.png" alt="Bomb" onclick="explode()">
+    <div id="counter">Clicks: <span id="clickCount">0</span></div>
+    <div id="merchantTimer">Merchant arrives in: <span id="timer">30:00</span></div>
+    <button onclick="buyAutoClicker()">Buy Auto-Clicker</button>
 
-  <script src="script.js"></script>
+    <script>
+        let clickCount = 0;
+        let timerSeconds = 1800; // 30 minutes in seconds
+        let merchantActive = false;
+
+        function explode() {
+            clickCount++;
+            document.getElementById('clickCount').innerText = clickCount;
+            alert('BOOM!'); // You can add a sound effect here
+        }
+
+        function updateMerchantTimer() {
+            if (timerSeconds > 0) {
+                timerSeconds--;
+                const minutes = Math.floor(timerSeconds / 60);
+                const seconds = timerSeconds % 60;
+                document.getElementById('timer').innerText = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+            } else {
+                if (!merchantActive) {
+                    alert('The merchant has arrived!');
+                    merchantActive = true;
+                    setTimeout(() => {
+                        alert('The merchant has left!');
+                        merchantActive = false;
+                        timerSeconds = 1800; // Reset timer
+                    }, 180000); // Merchant stays for 3 minutes (180000 ms)
+                }
+            }
+        }
+
+        function buyAutoClicker() {
+            if (clickCount >= 10) { // Example price
+                clickCount -= 10; // Deduct points for purchase
+                document.getElementById('clickCount').innerText = clickCount;
+                alert('Auto-Clicker purchased!'); // Implement auto-click functionality
+            } else {
+                alert('Not enough clicks to buy an Auto-Clicker!');
+            }
+        }
+
+        // Update the timer every second
+        setInterval(updateMerchantTimer, 1000);
+    </script>
 </body>
 </html>
+
