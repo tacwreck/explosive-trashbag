@@ -1,0 +1,35 @@
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explosive Trash Bag</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Explosive Trash Bag</h1>
+  <!-- Timer display for merchant arrival -->
+  <div class="timer" id="merchantTimer">Merchant in: 30:00</div>
+  
+  <div class="container">
+    <div class="trash-bag" id="trashBag">💥</div>
+    <div class="boom-text" id="boomText">BOOM!</div>
+  </div>
+  <p>Points: <span id="counter">0</span></p>
+  
+  <!-- Upgrades section -->
+  <div class="upgrades">
+    <h2>Upgrades</h2>
+    <button id="multiplierUpgrade">Upgrade Multiplier (x<span id="multiplier">1</span>) - Cost: <span id="multiplierCost">10</span> points</button>
+  </div>
+  
+  <!-- Merchant section -->
+  <div id="merchantSection" class="hidden">
+    <h2>Travelling Merchant</h2>
+    <button id="buyAutoClicker">Buy Auto-Clicker - Cost: 100 points</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
